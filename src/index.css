@@ -1,0 +1,87 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Playfair+Display:ital,wght@0,900;1,900&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-serif: "Playfair Display", serif;
+  
+  --color-primary: #606C38; /* Olive Green */
+  --color-surface: #000000; /* Black */
+  --color-card: #2C1810; /* Deep Brown */
+  --color-accent: #FEFAE0; /* Cream */
+  --color-border: #3D2B1F; /* Lighter Deep Brown for borders */
+  
+  --radius-bento: 1.5rem;
+  --radius-bento-lg: 2rem;
+}
+
+@layer base {
+  body {
+    @apply font-sans bg-black text-[#FEFAE0];
+  }
+}
+
+@layer utilities {
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+  .no-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+  
+  .bento-card {
+    @apply bg-[#2C1810] border border-[#3D2B1F] rounded-3xl shadow-lg transition-all duration-300;
+  }
+  
+  .bento-card-hover {
+    @apply hover:border-[#606C38] hover:shadow-[0_0_20px_rgba(96,108,56,0.1)];
+  }
+
+  .markdown-body {
+    @apply space-y-6 leading-relaxed;
+    color: #FEFAE0; /* Cream text */
+  }
+  .markdown-body h1 {
+    @apply text-2xl font-black mb-4 mt-8 pb-2 border-b;
+    color: #FEFAE0;
+    border-bottom: 2px solid #606C38; /* Olive Green underline */
+  }
+  .markdown-body h2 {
+    @apply text-xl font-bold mb-3 mt-6;
+    color: #FEFAE0;
+  }
+  .markdown-body h3 {
+    @apply text-lg font-bold mb-2 mt-4;
+    color: #FEFAE0;
+  }
+  .markdown-body p {
+    @apply mb-4 opacity-90;
+  }
+  .markdown-body ul, .markdown-body ol {
+    @apply pl-6 mb-4 space-y-2;
+  }
+  .markdown-body ul {
+    list-style-type: disc;
+  }
+  .markdown-body ol {
+    list-style-type: decimal;
+  }
+  .markdown-body li {
+    @apply pl-2 font-medium opacity-90;
+  }
+  .markdown-body strong {
+    @apply font-bold px-2 py-0.5 rounded;
+    color: #FEFAE0;
+    background-color: #606C38; /* Olive Green highlight */
+  }
+  .markdown-body blockquote {
+    @apply pl-6 py-4 italic rounded-r-2xl border-l-4;
+    border-left-color: #606C38; /* Olive Green border */
+    background-color: rgba(44, 24, 16, 0.5); /* Deep Brown 50% */
+  }
+  .markdown-body hr {
+    @apply my-8;
+    border-top: 1px solid #3D2B1F;
+  }
+}

@@ -1,0 +1,10 @@
+{
+  "name": "Lumina Study AI",
+  "description": "An advanced AI Study Assistant with real-time voice conversations via Gemini Live API and intelligent multi-turn role-based AI tutoring.",
+  "requestFramePermissions": [
+    "microphone"
+  ],
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}

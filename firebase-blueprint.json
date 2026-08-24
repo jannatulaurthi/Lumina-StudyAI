@@ -1,0 +1,118 @@
+{
+  "entities": {
+    "Profile": {
+      "title": "User Profile",
+      "description": "Information about the student's identity and learning stats.",
+      "type": "object",
+      "properties": {
+        "uid": { "type": "string" },
+        "displayName": { "type": "string" },
+        "email": { "type": "string" },
+        "learningStyle": { "type": "string", "enum": ["beginner", "intermediate", "advanced"] },
+        "streak": { "type": "integer" },
+        "totalStudyMinutes": { "type": "integer" },
+        "tutorVisits": { "type": "integer" },
+        "lastActive": { "type": "string", "format": "date-time" },
+        "createdAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["uid", "email"]
+    },
+    "Goal": {
+      "title": "Study Goal",
+      "description": "A specific learning objective defined by the student.",
+      "type": "object",
+      "properties": {
+        "userId": { "type": "string" },
+        "title": { "type": "string" },
+        "description": { "type": "string" },
+        "status": { "type": "string", "enum": ["pending", "in-progress", "completed"] },
+        "deadline": { "type": "string", "format": "date-time" },
+        "createdAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["userId", "title"]
+    },
+    "Note": {
+      "title": "Study Note",
+      "description": "Summarized materials or study notes saved by the user.",
+      "type": "object",
+      "properties": {
+        "userId": { "type": "string" },
+        "title": { "type": "string" },
+        "content": { "type": "string" },
+        "tags": { "type": "array", "items": { "type": "string" } },
+        "createdAt": { "type": "string", "format": "date-time" },
+        "updatedAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["userId", "title", "content"]
+    },
+    "Quiz": {
+      "title": "Quiz",
+      "description": "A generated quiz and its results.",
+      "type": "object",
+      "properties": {
+        "userId": { "type": "string" },
+        "topic": { "type": "string" },
+        "questions": { "type": "array" },
+        "score": { "type": "integer" },
+        "totalQuestions": { "type": "integer" },
+        "createdAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["userId", "topic", "questions"]
+    },
+    "Session": {
+      "title": "Study Session",
+      "description": "A focused study session (e.g., Pomodoro).",
+      "type": "object",
+      "properties": {
+        "userId": { "type": "string" },
+        "duration": { "type": "integer" },
+        "type": { "type": "string" },
+        "startTime": { "type": "string", "format": "date-time" },
+        "endTime": { "type": "string", "format": "date-time" },
+        "notes": { "type": "string" }
+      },
+      "required": ["userId", "duration"]
+    }
+    "QuizAttempt": {
+      "title": "Quiz Attempt",
+      "description": "Log of a single quiz attempt with performance data.",
+      "type": "object",
+      "properties": {
+        "userId": { "type": "string" },
+        "quizId": { "type": "string" },
+        "correctCount": { "type": "integer" },
+        "incorrectCount": { "type": "integer" },
+        "totalQuestions": { "type": "integer" },
+        "scorePercentage": { "type": "number" },
+        "timestamp": { "type": "string", "format": "date-time" }
+      },
+      "required": ["userId", "correctCount", "totalQuestions", "timestamp"]
+    }
+  },
+  "firestore": {
+    "/profiles/{userId}": {
+      "schema": "Profile",
+      "description": "User profiles and settings."
+    },
+    "/goals/{goalId}": {
+      "schema": "Goal",
+      "description": "Student study goals."
+    },
+    "/notes/{noteId}": {
+      "schema": "Note",
+      "description": "Summaries and notes."
+    },
+    "/quizzes/{quizId}": {
+      "schema": "Quiz",
+      "description": "Generated quizzes and metrics."
+    },
+    "/quiz_attempts/{attemptId}": {
+      "schema": "QuizAttempt",
+      "description": "Historical quiz attempts for progress tracking."
+    },
+    "/sessions/{sessionId}": {
+      "schema": "Session",
+      "description": "Study session logs."
+    }
+  }
+}
